@@ -1,0 +1,34 @@
+﻿@model List<DAL.Entity.Personnel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@foreach (var item in Model)
+{
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="card-body">
+                <h4 class="card-title">
+                    <span>@item.Name</span>
+                    <span>@item.Surname</span>
+                </h4>
+                <h5>@item.Title</h5>
+                <p class="card-text">@item.Email</p>
+                <p class="card-text">@item.PhoneNumber</p>
+            </div>
+            <div class="card-footer">
+                @Html.ActionLink("DELETE", "DELETE", new { id = item.ID }, new { @class = "btn btn-danger", onclick = "return confirm('Are you sure you want to delete??')" })
+
+                <a href="/Home/BringPersonnel/@item.ID" class="btn btn-success">UPDATE</a>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+<div class="col-lg-4" style="float:right">
+    <a href="/Home/Insert/" class="btn btn-primary">Add Personnel</a>
+</div>
